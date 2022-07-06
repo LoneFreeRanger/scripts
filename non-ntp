@@ -1,5 +1,9 @@
-# This script set's the server minute and second time stamp to that of NTP exactly, but retaining the server's hour time stamp
+# This script set's the server minute and second time stamp to that of NTP exactly, but retaining the server's hour time stamp.
+# It is an aboslute requirement for NTP to be disabled within the server OS
 # This can be useful for when the server is set to gmt time zone but requires that of a time of a country other than gmt (i.e: greece)
+
+# Add to server root cron:
+# i.e: */1 * * * * /u/espbin/non-ntp > /dev/null 2>&1
 
 # Get the server's hour time stamp and output to file
 date +%H > /tmp/serverhour
