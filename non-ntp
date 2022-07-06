@@ -21,4 +21,5 @@ cat /tmp/webfulltime | cut -d " " -f5 | cut -d ":" -f2 > /tmp/webminute
 cat /tmp/webfulltime | cut -d " " -f5 | cut -d ":" -f3 > /tmp/websecond
 
 # Set the time using the server's hour time stamp and the web's minute & second time stamp
-date -s $(cat /tmp/serverhour):$(cat /tmp/webminute):$(cat /tmp/websecond) 
+date -s $(cat /tmp/serverhour):$(cat /tmp/webminute):$(cat /tmp/websecond)
+logger "non-ntp script has run"
