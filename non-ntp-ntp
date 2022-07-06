@@ -1,0 +1,20 @@
+# This script set's the server minute and second time stamp to that of NTP exactly, but retaining the server's hour time stamp
+# This can be useful for when the server is set to gmt time zone but requires that of a time of a country other than gmt (i.e: greece)
+
+# Get the server's hour time stamp and output to file
+date +%H > /tmp/serverhour
+
+# Get the time from the web (which will be GMT) and ouput to file
+date -d "$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')" > /tmp/webfulltime
+
+# Extract the web's GMT minute time stamp and output to file
+cat /tmp/webfulltime | cut -d " " -f5 | cut -d ":" -f2 > /tmp/webminute
+
+# Extract the web's GMT hour time stamp and output to file
+# cat /tmp/webfulltime | cut -d " " -f5 | cut -d ":" -f1 > /tmp/webhour
+
+# Extract the web's GMT second time stamp and output to file
+cat /tmp/webfulltime | cut -d " " -f5 | cut -d ":" -f3 > /tmp/websecond
+
+# Set the time using the server's hour time stamp and the web's minute & second time stamp
+date -s $(cat /tmp/serverhour):$(cat /tmp/webminute):$(cat /tmp/websecond) 
