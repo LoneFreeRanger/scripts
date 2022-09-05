@@ -1,4 +1,4 @@
-# This script set's the server minute and second time stamp to that of NTP exactly, but retaining the server's hour time stamp.
+# This script set's the server minute and second time stamp to that of NTP exactly but keeping the hour stamp to that of what the server is in.
 # It is an aboslute requirement for NTP to be disabled within the server OS
 # This can be useful for when the server is set to gmt time zone but requires that of a time of a country other than gmt (i.e: greece)
 
