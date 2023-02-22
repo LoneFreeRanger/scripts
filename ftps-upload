@@ -1,0 +1,18 @@
+# RR 22.02.23
+# Script to upload via ftps (not sftp!) with username/ password authentication
+#
+# Requirements:
+#
+# - Package 'lftp' is installed into the ESP server enviroment
+# - Within file '/etc/lftp.conf' add line ‘set ssl:verify-certificate no’
+
+USER=USERNAME_HERE
+PASS=PASSWORD_HERE
+URL=Upload url here (i.e: granite5-com.nh-serv.co.uk)
+FILE_TO_SEND=File name to sent here (i.e: iexport.csv)
+APP_DIR=Elite directory here i.e /u/esp/moor/admin)
+DATE=$(date +%d""%m""%y)
+
+mkdir -p $(echo $APP_DIR)/sent
+lftp -c "open -u $USER,$PASS $URL; put -O . $(echo $APP_DIR)/$(echo $FILE_TO_SEND)"
+mv $(echo $APP_DIR)/$(echo $FILE_TO_SEND) $APP_DIR/sent/$(echo $FILE_TO_SEND)$(echo $DATE)
