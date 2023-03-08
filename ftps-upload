@@ -1,4 +1,8 @@
-# RR 22.02.23
+# Lines needed if doing via gui cron
+#!/bin/sh
+set -x
+
+# RR 08.03.23
 # Script to upload via ftps (not sftp!) with username/ password authentication
 #
 # Requirements:
