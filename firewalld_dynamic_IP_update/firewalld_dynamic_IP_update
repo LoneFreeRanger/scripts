@@ -45,7 +45,6 @@ firewall-cmd --remove-rich-rule="rule family=ipv4 source address=$(cat /u/tmp/$E
 #cp -rf /u/tmp/"$ELITEUNITURL"-IP /u/tmp/"$ELITEUNITURL"-IP-PREVIOUS
 
 # Add the new rich firewall rule to firewalld using details above
-#firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address='$(cat /u/tmp/$ELITEUNITURL-IP)' port protocol="tcp" port='$(cat /u/tmp/$ELITEUNITURL-$ELITEUNITHTTPPORT)' log prefix="FIREWALLD-ACCEPTED " level="info" accept'
 firewall-cmd --add-rich-rule="rule family=ipv4 source address=$(cat /u/tmp/$ELITEUNITURL-IP) port port=$(cat /u/tmp/$ELITEUNITURL-$ELITEUNITHTTPPORT) protocol=tcp  accept"
 echo "Added rule for URL $ELITEUNITURL $(cat /u/tmp/"$ELITEUNITURL"-IP) port $ELITEUNITHTTPPORT in the firewall."
 fi
