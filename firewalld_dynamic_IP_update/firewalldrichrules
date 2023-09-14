@@ -1,0 +1,8 @@
+# Reload the firewall rules in order to keep rich rules fresh
+firewall-cmd --reload
+
+# Log that the firewall has been reloaded
+logger "Firewalld has been reloaded as per dynamic firewalld update script from root cron."
+
+# Run in the individual rich firewalld rules
+run-parts /u/espbin/firewalldrichrules/files
