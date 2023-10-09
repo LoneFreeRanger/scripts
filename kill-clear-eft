@@ -1,0 +1,2 @@
+# Kills any eft process that has been running for more than 4 minutes (i.e: problem eft process)
+/usr/bin/killall -q -I --older-than 4m eft
